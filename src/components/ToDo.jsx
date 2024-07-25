@@ -3,7 +3,7 @@ const ToDo = (props) => {
         <li className="todo">
             <input type="checkbox"></input>
             <p>{props.children}</p>
-            <button>X</button>
+            <button onClick={e => props.handleDelete(props.id)}>X</button>
         </li>
     );
 };

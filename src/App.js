@@ -20,10 +20,20 @@ function App() {
     }
   ]);
 
+  const deleteTask = (taskId) => {
+    const newTaskList = [ ...taskList];
+    
+    const taskTarget = newTaskList.filter(el => el.id === taskId)[0];
+    const taskIndex = newTaskList.indexOf(taskTarget);
+    newTaskList.splice(taskIndex, 1);
+    
+    setTaskList(newTaskList);
+  };
+
   return (
     <div className="app">
       <Header></Header>
-      <ToDoList list={taskList}></ToDoList>
+      <ToDoList list={taskList} deleteFunc={deleteTask}></ToDoList>
       <ToDoCreate></ToDoCreate>
     </div>
   );

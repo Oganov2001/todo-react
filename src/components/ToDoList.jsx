@@ -1,9 +1,9 @@
 import ToDo from "./ToDo";
 
-const ToDoList = ({ list }) => {
+const ToDoList = ({ list, deleteFunc }) => {
     return (
         <ul className="todo-list">
-            {list.map(el => <ToDo>{el.task}</ToDo>)}
+            {list.map(el => <ToDo id={el.id} key={el.id} handleDelete={deleteFunc}>{el.task}</ToDo>)}
         </ul>
     );
 };
