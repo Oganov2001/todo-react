@@ -62,15 +62,12 @@ header {
 }
 
 .create-todo input[type=text] {
+  padding-left: 1rem;
   background-color: #eee;
   width: 80%;
   height: 1.5rem;
   border: none;
   border-radius: 1rem 0 0 1rem;
-}
-
-.create-todo input[type=text]::placeholder {
-  padding-left: 1rem;
 }
 
 .create-todo button {
