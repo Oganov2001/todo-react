@@ -1,7 +1,8 @@
-const ToDoCreate = () => {
+const ToDoCreate = (props) => {
+
     return (
-        <form className="create-todo" onSubmit={e => e.preventDefault()}>
-            <input type="text" placeholder="What are you going to do today?"></input>
+        <form className="create-todo" onSubmit={e => props.createFunc(e, props.input)}>
+            <input type="text" placeholder="What are you going to do today?" value={props.input} onChange={e => props.inputFunc(e)}></input>
             <button>+</button>
         </form>
     );

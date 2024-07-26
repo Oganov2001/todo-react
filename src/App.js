@@ -19,9 +19,10 @@ function App() {
       task: "Go to sleep"
     }
   ]);
+  const [ taskInput, setTaskInput ] = useState("");
 
   const deleteTask = (taskId) => {
-    const newTaskList = [ ...taskList];
+    const newTaskList = [ ...taskList ];
     
     const taskTarget = newTaskList.filter(el => el.id === taskId)[0];
     const taskIndex = newTaskList.indexOf(taskTarget);
@@ -30,11 +31,32 @@ function App() {
     setTaskList(newTaskList);
   };
 
+  const createTask = (e, newTask) => {
+    e.preventDefault();
+
+    if (newTask) {
+      const newTaskList = [ ...taskList ];
+
+      // Convert the date to an alphanumeric string 
+      // for the id in order to make it unique. 
+      newTaskList.push({ id: Date.now().toString(36), task: newTask});
+
+      setTaskList(newTaskList);
+      setTaskInput("");
+    } else {
+      console.error("Please insert a non-empty string.");
+    }
+  };
+
+  const handleInput = (e) => {
+    setTaskInput(e.target.value);
+  };
+
   return (
     <div className="app">
       <Header></Header>
       <ToDoList list={taskList} deleteFunc={deleteTask}></ToDoList>
-      <ToDoCreate></ToDoCreate>
+      <ToDoCreate input={taskInput} inputFunc={handleInput} createFunc={createTask}></ToDoCreate>
     </div>
   );
 }
