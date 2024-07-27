@@ -48,6 +48,14 @@ function App() {
     }
   };
 
+  const editTask = (taskId, editedTask) => {
+    const newTaskList = [ ...taskList ];
+    
+    newTaskList.filter(el => el.id === taskId)[0].task = editedTask;
+
+    setTaskList(newTaskList);
+  };
+
   const handleInput = (e) => {
     setTaskInput(e.target.value);
   };
@@ -55,7 +63,7 @@ function App() {
   return (
     <div className="app">
       <Header></Header>
-      <ToDoList list={taskList} deleteFunc={deleteTask}></ToDoList>
+      <ToDoList list={taskList} deleteFunc={deleteTask} editFunc={editTask}></ToDoList>
       <ToDoCreate input={taskInput} inputFunc={handleInput} createFunc={createTask}></ToDoCreate>
     </div>
   );
